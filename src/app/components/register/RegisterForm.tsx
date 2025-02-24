@@ -48,7 +48,8 @@ export default function RegisterForm() {
     
 
     return (
-        <form action="/api/register" method="POST" className="flex flex-col gap-4" autoComplete="random-string" onSubmit={handleSubmit}>
+       <div className="">
+             <form action="/api/register" method="POST" className="flex flex-col gap-4" autoComplete="random-string" onSubmit={handleSubmit}>
             <Input 
                 label="Seu nome de usuário" 
                 name="username" 
@@ -104,5 +105,6 @@ export default function RegisterForm() {
             <Button type="submit" className="w-full">Cadastrar</Button>
             {error.message != undefined && <p className="text-sm text-red-500 ">{error.message}</p>}
         </form>
+       </div>
     );
 }
