@@ -45,6 +45,8 @@ export default function RegisterForm() {
         redirect("/");
     }
 
+    
+
     return (
         <form action="/api/register" method="POST" className="flex flex-col gap-4" onSubmit={handleSubmit}>
                      

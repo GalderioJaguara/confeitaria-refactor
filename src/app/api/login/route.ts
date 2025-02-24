@@ -23,7 +23,16 @@ export async function POST(req: Request){
         password: data.password
     });
     if (!validateLoginCredentials.success){
-        return Response.json({email: "Por favor digite seu email", password: "Por favor digite sua senha"}, {status: 400, statusText: "Bad request"});
+        const errorMessage = {email: "", password: ""};
+        validateLoginCredentials.error.issues.map((err) => {
+            if (err.path[0] == "email") {
+                errorMessage.email = err.message;
+            }
+            if (err.path[0] == "password") {
+                errorMessage.password = err.message;
+            }
+        });
+        return Response.json(errorMessage, {status: 400, statusText: "Bad Request"});
     }
     const {email, password} = validateLoginCredentials.data;
     try {

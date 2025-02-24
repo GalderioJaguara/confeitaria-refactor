@@ -28,18 +28,33 @@ export async function POST(req: Request) {
         password_confirm: data.password_confirm
     });
     if (!validateUser.success){
-        return Response.json({
-            email: "Por favor digite um nome de usuário",
-            username: "Por favor digite o seu email",
-            password: "O campo de senha não pode ser vazio",
-            password_confirm: "O campo de confirmação de senha não pode ser vazio"
-        }, {status: 400, statusText: "Bad request"});
+    const errorMessage = {
+        email: "",
+        username: "",
+        password: "",
+        password_confirm: ""
+    };
+        validateUser.error.issues.map((err) => {
+            if (err.path[0] == "email"){
+                errorMessage.email = err.message;
+            }
+            if (err.path[0] == "username"){
+                errorMessage.username = err.message;
+            }
+            if (err.path[0] == "password"){
+                errorMessage.password = err.message;
+            }
+            if (err.path[0] == "password_confirm"){
+                errorMessage.password_confirm = err.message;
+            }  
+        });
+        return Response.json(errorMessage, {status: 400, statusText: "Bad Request"});
     }
     const {username, password, email, password_confirm} = validateUser.data;
     const id = uuidv4();
 
     if (password != password_confirm) {
-        return Response.json({password_confirm: "Invalid password"}, {status: 400, statusText: "Bad request"});
+        return Response.json({password_confirm: "As senhas não se coincidem."}, {status: 400, statusText: "Bad request"});
     }
 
     const hashedPassword = await bcrypt.hash(password, parseInt(process.env.SALT_ROUNDS!));  
