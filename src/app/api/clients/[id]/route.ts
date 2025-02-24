@@ -34,7 +34,7 @@ export async function PATCH(req: Request, {params}: {params: {id: string}}){
     }
 }
 
-export async function DELETE(req: Request, {params}: {params: {id: string}}){
+export async function DELETE(req: Request, {params}: {params: {id: string} } ){
     const {id} = await params;
     try {
         await sql`DELETE FROM clients WHERE id = ${id}`;
@@ -44,7 +44,7 @@ export async function DELETE(req: Request, {params}: {params: {id: string}}){
     }
 }
 
-export async function GET(req: Request, {params}: {params: {id: string}}){
+export async function GET({params}: {params: {id: string} } ){
     const { id } = await params;
     try {
         const client = await sql`SELECT * FROM clients WHERE id = ${id}`;
