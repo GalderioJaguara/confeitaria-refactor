@@ -15,7 +15,7 @@ const orderSchema = z.object({
 
 const orderUpdateSchema = orderSchema.omit({id: true});
 
-export async function PATCH(req: Request, {params}: {params: {id: string}}) {
+export async function PATCH(req: Request, {params}: {params: Promise<{id: string}>}) {
     const { id } = await params;
     const data = await req.formData();
 
@@ -46,7 +46,7 @@ export async function PATCH(req: Request, {params}: {params: {id: string}}) {
     }
 }
 
-export async function DELETE(req: Request,{params}: {params: {id: string}}){
+export async function DELETE(req: Request,{params}: {params: Promise<{id: string}>}){
     const { id } = await params;
     try {
         await sql`DELETE FROM orders WHERE id = ${id}`;
@@ -56,7 +56,7 @@ export async function DELETE(req: Request,{params}: {params: {id: string}}){
     }
 }
 
-export async function GET (req: Request, {params}: {params: {id: string}}){
+export async function GET (req: Request, {params}: {params: Promise<{id: string}>}){
     const { id } = await params; 
     try {
         const order = await sql`SELECT * FROM orders WHERE id = ${id}`;

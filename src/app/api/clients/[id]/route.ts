@@ -10,7 +10,7 @@ const clientSchema = z.object({
 });
 const clientEditSchema = clientSchema.omit({id: true});
 
-export async function PATCH(req: Request, {params}: {params: {id: string}}){
+export async function PATCH(req: Request, {params}: {params: Promise<{id: string}>}){
     const { id } = await params;
     const data = await req.formData();
     const validateClient  = clientEditSchema.safeParse({
@@ -34,7 +34,7 @@ export async function PATCH(req: Request, {params}: {params: {id: string}}){
     }
 }
 
-export async function DELETE(req: Request, {params}: {params: {id: string} } ){
+export async function DELETE(req: Request, {params}: {params: Promise<{id: string}> } ){
     const {id} = await params;
     try {
         await sql`DELETE FROM clients WHERE id = ${id}`;
