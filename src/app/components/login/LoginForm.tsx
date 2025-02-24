@@ -33,16 +33,33 @@ export default function LoginForm () {
         redirect("/");
     }
 
-    return(
+    return (
         <div>
-             <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                            
-                <Input label="Seu Email" name="email" value={values.email} id="email" type="text" onChange={handleChange}/>
+            <form className="flex flex-col gap-4" onSubmit={handleSubmit} autoComplete="off">
+                <Input 
+                    label="Seu Email" 
+                    name="email" 
+                    value={values.email} 
+                    id="email" 
+                    type="text" 
+                    onChange={handleChange}
+                    title="Digite seu email"
+                    placeholder="ex: nome@gmail.com"
+                />
                 {errors.email != undefined && <p className="text-sm text-red-500 ">{errors.email}</p>}
 
-                <Input label="Sua senha" name="password" value={values.password} id="password" type="password" onChange={handleChange}/>
+                <Input 
+                    label="Sua senha" 
+                    name="password" 
+                    value={values.password} 
+                    id="password" 
+                    type="password" 
+                    onChange={handleChange}
+                    title="Digite sua senha"
+                    placeholder="Insira sua senha"
+                />
                 {errors.password != undefined && <p className="text-sm text-red-500">{errors.password}</p>}
-    
+        
                 <Button type="submit" className="w-full">Entrar</Button>
                 {errors.message != undefined && <p className="text-sm text-red-500 ">{errors.message}</p>}
             </form>

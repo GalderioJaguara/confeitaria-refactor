@@ -48,21 +48,59 @@ export default function RegisterForm() {
     
 
     return (
-        <form action="/api/register" method="POST" className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                     
-            <Input label="Seu nome de usuário" name="username" id="username" type="text" onChange={handleChange} value={values.username}/>
+        <form action="/api/register" method="POST" className="flex flex-col gap-4" autoComplete="random-string" onSubmit={handleSubmit}>
+            <Input 
+                label="Seu nome de usuário" 
+                name="username" 
+                id="username" 
+                type="text" 
+                autoComplete="off"
+                onChange={handleChange} 
+                value={values.username}
+                title="Digite seu nome de usuário"
+                placeholder="ex: Joao Da Silva"
+            />
             {error.username != undefined && <p className="text-sm text-red-500">{error.username}</p>}
 
-            <Input label="Seu Email" name="email" id="email" type="text" value={values.email} onChange={handleChange}/>
+            <Input 
+                label="Seu Email" 
+                name="email" 
+                id="email" 
+                autoComplete="off"
+                type="text" 
+                value={values.email} 
+                onChange={handleChange}
+                title="Digite seu email"
+                placeholder="ex: nome@gmail.com"
+            />
             {error.email != undefined && <p className="text-sm text-red-500 ">{error.email}</p>}
 
-            <Input label="Sua senha" name="password" id="password" type="password" value={values.password} onChange={handleChange}/>
+            <Input 
+                label="Sua senha" 
+                name="password" 
+                id="password" 
+                autoComplete="off"
+                type="password" 
+                value={values.password} 
+                onChange={handleChange}
+                title="Digite sua senha"
+                placeholder="mínimo 8 caracteres"
+            />
             {error.password != undefined && <p className="text-sm text-red-500 ">{error.password}</p>}
-           
-            <Input label="Confirme sua senha" name="password_confirm" id="password_confirm" type="password" value={values.password_confirm} onChange={handleChange}/>
+
+            <Input 
+                label="Confirme sua senha" 
+                name="password_confirm" 
+                id="password_confirm" 
+                type="password" 
+                autoComplete="off"
+                value={values.password_confirm} 
+                onChange={handleChange}
+                title="Confirme sua senha"
+                placeholder="Repita a senha"
+            />
             {error.password_confirm != undefined && <p className="text-sm text-red-500">{error.password_confirm}</p>}
             
-           
             <Button type="submit" className="w-full">Cadastrar</Button>
             {error.message != undefined && <p className="text-sm text-red-500 ">{error.message}</p>}
         </form>
