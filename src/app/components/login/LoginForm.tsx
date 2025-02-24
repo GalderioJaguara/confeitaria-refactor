@@ -40,7 +40,7 @@ export default function LoginForm () {
                 <Input label="Seu Email" name="email" value={values.email} id="email" type="text" onChange={handleChange}/>
                 {errors.email != undefined && <p className="text-sm text-red-500 ">{errors.email}</p>}
 
-                <Input label="Sua senha" name="password" value={values.password} id="password" type="text" onChange={handleChange}/>
+                <Input label="Sua senha" name="password" value={values.password} id="password" type="password" onChange={handleChange}/>
                 {errors.password != undefined && <p className="text-sm text-red-500">{errors.password}</p>}
     
                 <Button type="submit" className="w-full">Entrar</Button>

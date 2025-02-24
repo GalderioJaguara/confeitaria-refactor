@@ -56,10 +56,10 @@ export default function RegisterForm() {
             <Input label="Seu Email" name="email" id="email" type="text" value={values.email} onChange={handleChange}/>
             {error.email != undefined && <p className="text-sm text-red-500 ">{error.email}</p>}
 
-            <Input label="Sua senha" name="password" id="password" type="text" value={values.password} onChange={handleChange}/>
+            <Input label="Sua senha" name="password" id="password" type="password" value={values.password} onChange={handleChange}/>
             {error.password != undefined && <p className="text-sm text-red-500 ">{error.password}</p>}
            
-            <Input label="Confirme sua senha" name="password_confirm" id="password_confirm" type="text" value={values.password_confirm} onChange={handleChange}/>
+            <Input label="Confirme sua senha" name="password_confirm" id="password_confirm" type="password" value={values.password_confirm} onChange={handleChange}/>
             {error.password_confirm != undefined && <p className="text-sm text-red-500">{error.password_confirm}</p>}
             
            
