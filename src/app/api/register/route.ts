@@ -13,8 +13,8 @@ const userSchema = z.object({
     id: z.string().uuid(),
     username: z.string().min(1, "Por favor digite um nome de usuário"),
     email: z.string().email('Email inválido'),
-    password: z.string().min(1, "O campo de senha não pode ser nulo!"),
-    password_confirm: z.string().min(1, "O campo de senha não pode ser nulo!")   
+    password: z.string().min(8, "O campo de senha deve ter no mínimo 8 caracteres!"),
+    password_confirm: z.string().min(8, "O campo de senha deve ter no mínimo 8 caracteres!")   
 });
 
 const registerSchema = userSchema.omit({id: true});
