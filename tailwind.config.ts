@@ -6,6 +6,15 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    "inset-0",
+    "bg-black/50",
+    "w-screen",
+    "h-screen",
+    "translate-x-full",
+    "translate-x-0"
+    // Outras classes dinâmicas, se houver
+  ],
   theme: {
     extend: {
       colors: {
