@@ -1,10 +1,14 @@
-import Button from "@/app/components/generics/Button";
 import Link from "next/link";
-import Input from "@/app/components/register/Input";
 import LoginForm from "../components/login/LoginForm";
+import { verifySessions } from "../api/utils/session";
+import { redirect } from "next/navigation";
 
 
-export default function Page(){
+export default async function Page(){
+   const verifyCookies = await verifySessions();
+    if (verifyCookies){
+        redirect('/hub');
+    }
 
     return (
        <main className="md:w-screen min-h-screen flex justify-center items-center">

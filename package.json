@@ -9,9 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.5",
+    "@mui/material": "^6.4.5",
+    "@mui/material-nextjs": "^6.4.3",
     "bcrypt": "^5.1.1",
     "confeitaria-refactor": "file:",
     "dotenv": "^16.4.7",
+    "jose": "^6.0.7",
     "next": "15.1.7",
     "postgres": "^3.4.5",
     "react": "^19.0.0",

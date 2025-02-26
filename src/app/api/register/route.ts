@@ -3,7 +3,8 @@ import z from 'zod';
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from 'uuid';
 import dotenv from 'dotenv';
-import { redirect } from "next/navigation";
+import { setCookeies } from "../utils/session";
+
 
 dotenv.config();
 
@@ -60,6 +61,8 @@ export async function POST(req: Request) {
     const hashedPassword = await bcrypt.hash(password, parseInt(process.env.SALT_ROUNDS!));  
     try {
         await sql`INSERT INTO users (username, email, hash) VALUES (${username}, ${email}, ${hashedPassword})`;
+        const user = await sql`SELECT id FROM users WHERE email = ${email}`;
+        await setCookeies(user[0].id);
         return Response.json({message: "Register sucessful!"}, {status: 200});
 
     } catch (error) {
