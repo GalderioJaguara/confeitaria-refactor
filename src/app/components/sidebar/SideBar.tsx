@@ -18,7 +18,7 @@ const roboto = Roboto({
 export default function SideBar() {
     const [open, setOpen] = useState<boolean>(false);
     function handleClick() {
-        
+        console.log(open);
         setOpen(!open);
     }
 
@@ -33,8 +33,6 @@ export default function SideBar() {
                 "translate-x-0": !open
             })}/>
         </div>    
-           <div className="hidden translate-x-0 inset-0 bg-black/50 w-screen h-screen"></div>
-            <div className="hidden translate-x-full"></div>
        </div>
     );
 }
