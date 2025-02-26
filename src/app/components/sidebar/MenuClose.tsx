@@ -1,7 +1,7 @@
 import { Close } from "@mui/icons-material"
 
 interface MenuCloseProps {
-    onClick: any
+    onClick: ()=> void
 }
 
 export default function MenuClose(props: MenuCloseProps) {

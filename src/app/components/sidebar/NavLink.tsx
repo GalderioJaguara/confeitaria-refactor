@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 interface NavLinkProps {
     href: string, 
     children: ReactNode,
-    onClick: any
+    onClick: ()=> void
 }
 
 export default function NavLink(props: NavLinkProps) {

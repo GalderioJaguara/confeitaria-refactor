@@ -1,7 +1,7 @@
 import { Menu } from '@mui/icons-material';
 
 interface MenuMobileProps {
-    onClick: any 
+    onClick: ()=> void 
 }
 
 export default function MenuMobile(props: MenuMobileProps) {

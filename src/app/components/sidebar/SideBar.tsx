@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { Ephesis, Roboto } from "next/font/google";
 import Nav from "./Nav";
 import { useState } from "react";
@@ -18,8 +18,11 @@ const roboto = Roboto({
 export default function SideBar() {
     const [open, setOpen] = useState<boolean>(false);
     function handleClick() {
-        console.log(open);
-        setOpen(!open);
+        console.log("Rendering component, isOpen:", open);
+    
+    const handleToggle = () => {
+        console.log("Before toggle:", open);
+        setOpen(prevState => !prevState)
     }
 
     return (
