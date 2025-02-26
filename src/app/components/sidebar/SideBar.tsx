@@ -23,14 +23,14 @@ export default function SideBar() {
     }
 
     return (
-       <div className={clsx({"inset-0 bg-black/50 w-screen h-screen": open == true})}>
+       <div className={clsx({"inset-0 bg-black/50 w-screen h-screen": open})}>
         <div className={`bg-primary-500 w-screen h-12 px-4 flex items-center`}>
             <MenuMobile onClick={handleClick} />
         </div>
         <div className={` `}>
             <Nav closeModal={setOpen} className={clsx("left-[-300] top-0 ease-in-out durarion-300 transition", {
-                "translate-x-full": open == true,
-                "translate-x-0": open == false
+                "translate-x-full": open,
+                "translate-x-0": !open
             })}/>
         </div>    
            
