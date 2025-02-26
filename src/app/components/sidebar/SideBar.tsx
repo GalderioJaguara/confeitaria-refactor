@@ -28,12 +28,13 @@ export default function SideBar() {
             <MenuMobile onClick={handleClick} />
         </div>
         <div className={` `}>
-            <Nav closeModal={setOpen} className={clsx("left-[-300] top-0 ease-in-out durarion-300 transition", {
+            <Nav closeModal={setOpen} className={clsx("-left-[300] top-0 ease-in-out duration-300 transition", {
                 "translate-x-full": open,
                 "translate-x-0": !open
             })}/>
         </div>    
-           
+           <div className="hidden translate-x-0 inset-0 bg-black/50 w-screen h-screen"></div>
+            <div className="hidden translate-x-full"></div>
        </div>
     );
 }
