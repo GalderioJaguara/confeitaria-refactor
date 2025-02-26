@@ -3,6 +3,7 @@ import { Ephesis, Roboto } from "next/font/google";
 import Nav from "./Nav";
 import { useState } from "react";
 import MenuMobile from "./MenuMobile";
+import clsx from "clsx";
 
 export const ephesis = Ephesis({
   subsets: ["latin"],
@@ -22,12 +23,15 @@ export default function SideBar() {
     }
 
     return (
-       <div className={`${open == true ? `inset-0 bg-black/50 w-screen h-screen` : ``}`}>
+       <div className={clsx({"inset-0 bg-black/50 w-screen h-screen": open == true})}>
         <div className={`bg-primary-500 w-screen h-12 px-4 flex items-center`}>
             <MenuMobile onClick={handleClick} />
         </div>
         <div className={` `}>
-            <Nav closeModal={setOpen} className={`left-[-300] top-0 ease-in-out durarion-300 transition ${open == true ? `translate-x-full` : `translate-x-0`}`}/>
+            <Nav closeModal={setOpen} className={clsx("left-[-300] top-0 ease-in-out durarion-300 transition", {
+                "translate-x-full": open == true,
+                "translate-x-0": open == false
+            })}/>
         </div>    
            
        </div>
