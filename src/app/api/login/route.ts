@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt';
 import { redirect } from 'next/navigation';
 dotenv.config();
 import { cookies } from 'next/headers';
-import { setCookeies } from '../utils/session';
+import { setCookies } from '../utils/session';
 
 const sql = postgres(process.env.POSTGRES_URL!, {ssl: "require"});
 
@@ -49,7 +49,7 @@ export async function POST(req: Request){
             return Response.json({password: "Senha incorreta! Tente novamente"}, {status: 400, statusText: "Bad request"});
         }
         
-        await setCookeies(userData[0].id);
+        await setCookies(userData[0].id);
         return Response.json({}, {status: 200 , statusText: "Ok"});
     } catch (error) {
        return Response.json({error: error, message: "Failed to login"}, {status: 400, statusText: "Bad request"});

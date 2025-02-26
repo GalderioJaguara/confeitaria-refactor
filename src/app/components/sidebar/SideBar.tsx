@@ -1,41 +1,73 @@
-"use client";
-import { Ephesis, Roboto } from "next/font/google";
-import Nav from "./Nav";
-import { useState } from "react";
-import MenuMobile from "./MenuMobile";
-import clsx from "clsx";
+'use client';
+import { Menu, SpaceDashboard, ShoppingBasket, Face2, AccountBalance, Close, X } from '@mui/icons-material';
+import { useState, useRef } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useClickAway } from 'react-use'
+import { Ephesis } from 'next/font/google';
+import Link from 'next/link';
 
-export const ephesis = Ephesis({
-  subsets: ["latin"],
-  weight: ["400"]
-});
+const ephesis = Ephesis({subsets: ["latin"], weight: ["400"]});
 
-const roboto = Roboto({
-    subsets: ["latin"],
-    weight: ["400"]
-});
+const listItems = [
+    {title: "Painel", icon: <SpaceDashboard />, href: '/hub'},
+    {title: "Encomendas", icon: <ShoppingBasket />, href: '/hub/orders'},
+    {title: "Clientes", icon: <Face2 />, href: '/hub/clients'},
+    {title: "Financeiro", icon: <AccountBalance />, href: '/hub/finance'}
+]
 
-export default function SideBar() {
+export default function Sidebar() {
     const [open, setOpen] = useState<boolean>(false);
-    function handleClick() {
-        console.log("Rendering component, isOpen:", open);
-    
-    const handleToggle = () => {
-        console.log("Before toggle:", open);
-        setOpen(prevState => !prevState)
+    const ref = useRef(null);
+    useClickAway(ref, () => setOpen(!false));
+
+    function openSideMenu() {
+        setOpen(!open);
     }
 
-    return (
-       <div className={clsx({"inset-0 bg-black/50 w-screen h-screen": open})}>
-        <div className={`bg-primary-500 w-screen h-12 px-4 flex items-center`}>
-            <MenuMobile onClick={handleClick} />
-        </div>
-        <div className={` `}>
-            <Nav closeModal={setOpen} className={clsx("-left-[300] top-0 ease-in-out duration-300 transition", {
-                "translate-x-full": open,
-                "translate-x-0": !open
-            })}/>
-        </div>    
-       </div>
-    );
+    const framerSidebarBackground = {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0, transition:  { delay: 0.2 }},
+        transition: {duration: 0.3}
+    };
+
+    const framerSidebarPanel = {
+        initial: { x: '-100%' },
+        animate: { x: 0 },
+        exit:{ x: '-100%' },
+        transition: {duration: 0.3}
+    };
+
+   return(
+    <div>
+       <button onClick={openSideMenu}>
+            <Menu className='text-white text-lg cursor-pointer hover:text-primary-50'/>
+       </button>
+        <AnimatePresence mode='wait' initial={false}>
+        {open && (
+        <>
+        <motion.div {...framerSidebarBackground} aria-hidden="true" className='fixed bottom-0 left-0 right-0 top-0 z-40 bg-black/10 backdrop-blur-sm'>
+        </motion.div>
+        <motion.div {...framerSidebarPanel} className='fixed top-0 bottom-0 left-0 z-50 w-full h-screen max-w-xs border-r-2 border-primary-400 bg-primary-500' ref={ref} aria-label='SideBar'>
+            <div className='p-4'>
+                <button onClick={openSideMenu}><Close className='text-white mb-4'/></button>
+                <h1 className={`text-white text-3xl ${ephesis.className}`} >Andreia Teofilo Confeitaria</h1>
+            </div>
+            <ul className='mx-2'>
+                {listItems.map((item, index) => (
+                    <li key={index} className='text-white py-4 px-2 my-2 hover:bg-primary-300 cursor-pointer rounded-md'>
+                        <Link href={item.href} className='flex gap-2 items-center' onClick={openSideMenu}>
+                            <span>{item.icon}</span>
+                            <span>{item.title}</span>
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+        </motion.div>
+        </>
+       )}
+        </AnimatePresence>
+
+    </div>
+    ); 
 }
