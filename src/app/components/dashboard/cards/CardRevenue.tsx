@@ -9,7 +9,6 @@ export default function CardRevenue({children, data}: {children?: ReactNode, dat
     
         const [selectedYear, setSelectedYear] = useState<number>(2025);
         const dataThisYear = filterRevenueByYear(data, selectedYear);
-        console.log(data);
         
     return(
         <div className="h-[400px] w-full border border-solid p-4">
