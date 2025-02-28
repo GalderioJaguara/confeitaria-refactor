@@ -11,7 +11,7 @@ export default function CardRevenue({children, data}: {children?: ReactNode, dat
         const dataThisYear = filterRevenueByYear(data, selectedYear);
         
     return(
-        <div className="h-[400px] w-full border border-solid p-4">
+        <div className="h-[400px] w-full border border-solid p-4 shadow-md rounded-md">
             <div className="flex justify-between items-center">
                 <CardTitle>Faturamento anual</CardTitle>
                 <div>
