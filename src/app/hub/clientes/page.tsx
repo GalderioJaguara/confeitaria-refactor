@@ -1,9 +1,9 @@
-'use client'
 import SearchBox from "@/app/components/clientes/SearchBox";
 import TableClients from "@/app/components/clientes/TableClients";
+import { GET } from '@/app/api/clients/route';
 
 export default async function Page() {
-    const response = await fetch("/api/clients");
+    const response = await GET();
     const clients = await response.json();
     
     return (

@@ -1,4 +1,4 @@
-'use clients'
+'use client'
 
 export default function SearchBox() {
 
