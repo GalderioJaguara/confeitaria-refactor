@@ -3,7 +3,7 @@ import SearchBox from "@/app/components/clientes/SearchBox";
 import TableClients from "@/app/components/clientes/TableClients";
 
 export default async function Page() {
-    const response = await fetch("http://localhost:3000/api/clients");
+    const response = await fetch("/api/clients");
     const clients = await response.json();
     
     return (
