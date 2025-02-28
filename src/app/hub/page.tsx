@@ -48,7 +48,7 @@ export default async function Page() {
                 </CardSmall>
             ))}
             </CardSmContainer>
-            <CardContainer className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <CardContainer className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <CardOrders>
                     <CardTitle>Últimas Encomendas</CardTitle>
                     <CardContainer className="mt-4 mb-8">

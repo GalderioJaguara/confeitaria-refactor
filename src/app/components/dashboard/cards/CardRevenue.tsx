@@ -16,10 +16,7 @@ export default function CardRevenue({children, data}: {children?: ReactNode, dat
             <div className="flex justify-between items-center">
                 <CardTitle>Faturamento anual</CardTitle>
                 <div>
-                    <select name="years" id="years" className="p-4 border-b border-solid border-gray-200" onChange={(e) => {
-                        setSelectedYear(Number(e.target.value))
-                        console.log(dataThisYear);
-                    }} defaultValue={2025}>
+                    <select name="years" id="years" className="p-4 border-b border-solid border-gray-200" onChange={(e) => setSelectedYear(Number(e.target.value))} defaultValue={2025}>
                         <option value="2025" selected className="p-4">2025</option>
                         <option value="2024">2024</option>
                     </select>
