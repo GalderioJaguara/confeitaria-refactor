@@ -7,8 +7,8 @@ interface CardSmContentProps {
 
 export default function CardContent({children, className}: CardSmContentProps) {
     return(
-        <div className={className}>
+        <p className={className}>
             {children}
-        </div>
+        </p>
     );
 }

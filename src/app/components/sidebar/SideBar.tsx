@@ -10,9 +10,9 @@ const ephesis = Ephesis({subsets: ["latin"], weight: ["400"]});
 
 const listItems = [
     {title: "Painel", icon: <SpaceDashboard />, href: '/hub'},
-    {title: "Encomendas", icon: <ShoppingBasket />, href: '/hub/orders'},
-    {title: "Clientes", icon: <Face2 />, href: '/hub/clients'},
-    {title: "Financeiro", icon: <AccountBalance />, href: '/hub/finance'}
+    {title: "Encomendas", icon: <ShoppingBasket />, href: '/hub/encomendas'},
+    {title: "Clientes", icon: <Face2 />, href: '/hub/clientes'},
+    {title: "Financeiro", icon: <AccountBalance />, href: '/hub/financeiro'}
 ]
 
 export default function Sidebar() {
