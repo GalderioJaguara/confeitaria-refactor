@@ -1,3 +1,4 @@
+'use client'
 import SearchBox from "@/app/components/clientes/SearchBox";
 import TableClients from "@/app/components/clientes/TableClients";
 
