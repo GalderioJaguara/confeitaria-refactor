@@ -50,7 +50,7 @@ export default function Sidebar() {
         </motion.div>
         <motion.div {...framerSidebarPanel} className='fixed top-0 bottom-0 left-0 z-50 w-full h-screen max-w-xs border-r-2 border-primary-400 bg-primary-500' ref={ref} aria-label='SideBar'>
             <div className='p-4'>
-                <button onClick={openSideMenu}><Close className='text-white mb-4'/></button>
+                <button onClick={openSideMenu}><Close className='text-white mb-4 hover:text-primary-50'/></button>
                 <h1 className={`text-white text-3xl ${ephesis.className}`} >Andreia Teofilo Confeitaria</h1>
             </div>
             <ul className='mx-2'>
