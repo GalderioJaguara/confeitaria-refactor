@@ -33,6 +33,8 @@ export default function CardRevenue({children, data}: {children?: ReactNode, dat
                             label: "Faturamento"
                         }
                     ]}
+                    width={668}
+                    height={320}
                     />
          </div>
     );
