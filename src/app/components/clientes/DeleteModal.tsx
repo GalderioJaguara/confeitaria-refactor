@@ -23,7 +23,7 @@ export default function DeleteModal({id}: {id:string}) {
             return data;
         }
         setOpenDeleteModal(false);
-        redirect("/clientes");
+        redirect("/hub/clientes");
     }
 
     return(
