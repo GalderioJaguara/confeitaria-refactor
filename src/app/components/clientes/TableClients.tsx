@@ -1,8 +1,9 @@
-'use client'
-
-import { Delete, Edit } from "@mui/icons-material";
+import { Close, Delete, Edit } from "@mui/icons-material";
+import Button from "../generics/Button";
+import DeleteModal from "./DeleteModal";
 
 export default function TableClients({data}: {data?: any[]}) {
+    
     return (
         <div className="relative w-full overflow-auto">
             <table className="w-full text-left caption-bottom text-sm">
@@ -20,14 +21,15 @@ export default function TableClients({data}: {data?: any[]}) {
                             <td className="p-4 align-middle text-gray-400">{client.phone}</td>
                             <td className="p-4 align-middle text-gray-400">
                                 <div className="flex gap-4 items-center">
-                                    <button><Edit /></button>
-                                    <button><Delete /></button>
+                                    <DeleteModal id={client.id} />
                                 </div>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+            {/* Delete modal */}
+            
         </div>
     );
 }

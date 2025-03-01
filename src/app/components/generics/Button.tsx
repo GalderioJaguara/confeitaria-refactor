@@ -1,9 +1,9 @@
 
 export default function Button(props:any) {
-    const {children, type, className, variant} = props;
+    const {children, type, className, variant, onClick} = props;
 
    return (
-    <button type={type} className={`${variant == "warning" ? "bg-red-500 hover:bg-red-400" : "bg-primary-500 hover:bg-primary-400"} text-white px-4 h-[48px] rounded-md  ${className}`}>{children}</button>
+    <button onClick={onClick} type={type} className={`${variant == "warning" ? "bg-red-500 hover:bg-red-400" : "bg-primary-500 hover:bg-primary-400"} text-white px-4 h-[48px] rounded-md  ${className}`}>{children}</button>
    );
 }
 

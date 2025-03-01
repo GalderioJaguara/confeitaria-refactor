@@ -37,6 +37,7 @@ export async function PATCH(req: Request, {params}: {params: Promise<{id: string
 export async function DELETE(req: Request, {params}: {params: Promise<{id: string}> } ){
     const {id} = await params;
     try {
+        await sql`DELETE FROM orders WHERE client_id = ${id}`;
         await sql`DELETE FROM clients WHERE id = ${id}`;
         return Response.json({message: "Data delete sucessful!"});
     } catch (error) {
