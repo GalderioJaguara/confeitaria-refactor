@@ -41,7 +41,7 @@ export async function POST(req: Request) {
 
 export async function GET(){
     try {
-        const orders = await sql`SELECT * FROM orders`;
+        const orders = await sql`SELECT orders.id, orders.order_details, orders.price,orders.status, orders.created_at, orders.delivery_time, clients.name FROM orders INNER JOIN clients ON orders.client_id=clients.id`;
         return Response.json(orders, {status: 200, statusText: "Ok."});
     } catch (error) {
         return Response.json({error: error}, {status: 400, statusText: "Bad Request."});

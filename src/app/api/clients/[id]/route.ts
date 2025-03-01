@@ -3,22 +3,33 @@ import { z } from  'zod';
 
 const sql = postgres(process.env.POSTGRES_URL!, {ssl: "require"});
 
+
 const clientSchema = z.object({
     id: z.string().uuid(),
     name: z.string().min(1, "Por favor preencha o nome do cliente."),
-    phone: z.string().min(18, "Por favor insira um telefone válido.")
+    phone: z.string().min(14, "Por favor insira um telefone válido.")
 });
+
 const clientEditSchema = clientSchema.omit({id: true});
 
-export async function PATCH(req: Request, {params}: {params: Promise<{id: string}>}){
+export async function PUT(req: Request, {params}: {params: Promise<{id: string}>}){
     const { id } = await params;
-    const data = await req.formData();
+    const data = await req.json();
     const validateClient  = clientEditSchema.safeParse({
-        name: data.get("name"),
-        phone: data.get("phone")
+        name: data.name,
+        phone: data.phone
     });
-    if (!validateClient.success){
-        return Response.json(validateClient.error.flatten().fieldErrors);
+    if (!validateClient.success) {
+        const errorMessage = {name: "", phone: ""};
+        validateClient.error.issues.map((err) => {
+            if (err.path[0] == 'name') {
+                errorMessage.name = err.message; 
+            }
+            if (err.path[0] == 'phone') {
+                errorMessage.phone = err.message;
+            }
+        });
+        return Response.json(errorMessage, {status: 400, statusText: "Bad Request"});
     }
     const {name, phone} = validateClient.data;
 
