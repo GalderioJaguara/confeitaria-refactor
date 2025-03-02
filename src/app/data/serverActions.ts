@@ -3,7 +3,7 @@
 import { revalidateTag } from "next/cache";
 
 export default async function createOrder(formData: FormData) {
-     await fetch("https://confeitaria-refactor.vercel.app/api/orders", {
+    const response =  await fetch("https://confeitaria-refactor.vercel.app/api/orders", {
         method: "POST",
         body: JSON.stringify({
             order_details: formData.get("order_details"),
@@ -13,5 +13,7 @@ export default async function createOrder(formData: FormData) {
             delivery_time: formData.get("delivery_time") 
         }),
     });
+
+    console.log(await response.json());
     revalidateTag("create-order"); 
 }
