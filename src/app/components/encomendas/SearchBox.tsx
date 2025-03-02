@@ -55,6 +55,7 @@ interface Orders {
                });
                return data;
            }
+           setOpen(false);
            router.push("/hub/encomendas");
        }
       function handleClick () {
