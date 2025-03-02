@@ -10,7 +10,8 @@ export default async function createOrder(formData: FormData) {
             price: formData.get("price"),
             status: formData.get("status"),
             created_at: formData.get("created_at"),
-            delivery_time: formData.get("delivery_time") 
+            delivery_time: formData.get("delivery_time"),
+            client_id: formData.get("client_id")
         }),
     });
 
