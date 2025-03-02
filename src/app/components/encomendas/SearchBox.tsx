@@ -19,7 +19,7 @@ interface Orders {
     delivery_time: string;
     client_id: string;
 }
-    export default function SearchBox({orders}: {orders: any[]}) {
+    export default function SearchBox({orders, clients}: {orders: any[], clients: any[]}) {
     const router = useRouter();
         const [open, setOpen] = useState<boolean>(false);
        const [values, setValues] = useState<Orders>({order_details: "", price: "", status: "Nao Entregue", created_at: "", delivery_time: "", client_id: ""});
@@ -103,8 +103,8 @@ interface Orders {
                                            <ClientBox name="client_id" value={values.client_id} onChange={handleChange} label="Clientes">
                                            <Option value="" disabled={true} selected={true}>Selecione um Cliente</Option>
                                                {
-                                                   orders.map((client, index) => (
-                                                       <Option key={index} value={client.client_id}>{client.name}</Option>
+                                                   clients.map((client, index) => (
+                                                       <Option key={index} value={client.id}>{client.name}</Option>
                                                    ))
                                                }
                                            </ClientBox>

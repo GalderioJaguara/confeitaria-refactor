@@ -58,3 +58,11 @@ export async function getRevenueLastMonths() {
         throw new Error("Failed to get last 12 months revenue");
     }
 }
+export async function getClientIds(){
+    try {
+       const names = sql`SELECT name ,id from clients`;
+        return names;
+    } catch(error) {
+        throw new Error("Failed to fetch clients");
+    }
+}
