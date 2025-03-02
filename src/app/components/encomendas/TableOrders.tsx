@@ -3,7 +3,7 @@ import { Delete, Edit } from "@mui/icons-material";
 export default function TableOrders({orders}: {orders?: any[]}) {
     return(
         <div className="mt-4 overflow-x-auto">
-                  <div className="relative min-w-[1024] w-full overflow-auto">
+                  <div className="relative min-w-[1024] w-full overflow-scroll">
                         <table className="w-full text-left caption-bottom text-sm">
                             <thead>
                                 <tr className="border-b transition-colors hover:bg-muted/50">
