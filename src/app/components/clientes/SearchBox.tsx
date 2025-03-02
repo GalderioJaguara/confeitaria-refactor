@@ -65,7 +65,7 @@ export default function SearchBox() {
         </div>
         {open && (
             <div className="fixed bottom-0 left-0 right-0 top-0 z-40 flex items-center justify-center bg-black/10 backdrop-blur-sm">
-            <div className="w-[450px] h-[450px] bg-white p-8 rounded-md border border-solid max-h-screen overflow-scroll border-black/50">
+            <div className="w-[450px] h-[450px] bg-white p-8 rounded-md border border-solid max-h-screen overflow-auto border-black/50">
                <div>
                 <div className="flex justify-between items-center">
                 <Title>Cadastre o usuário</Title>

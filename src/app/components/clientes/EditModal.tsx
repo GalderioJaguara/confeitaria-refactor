@@ -63,7 +63,7 @@ export default function EditModal({client}: {client: ClientProps}) {
             <button onClick={openModal}><Edit /></button>
              {open && (
                         <div className="fixed bottom-0 left-0 right-0 top-0 z-40 flex items-center justify-center bg-black/10 backdrop-blur-sm">
-                        <div className="w-[450px] h-[450px] max-h-screen overflow-scroll bg-white p-8 rounded-md border border-solid border-black/50">
+                        <div className="w-[450px] h-[450px] max-h-screen overflow-auto bg-white p-8 rounded-md border border-solid border-black/50">
                            <div>
                             <div className="flex justify-between items-center">
                             <Title>Editar dados do usuário</Title>
