@@ -1,6 +1,7 @@
 'use server'
 
 import { revalidateTag } from "next/cache";
+import { redirect } from "next/navigation";
 
 export default async function createOrder(formData: FormData) {
     const response =  await fetch("https://confeitaria-refactor.vercel.app/api/orders", {
@@ -14,7 +15,11 @@ export default async function createOrder(formData: FormData) {
             client_id: formData.get("client_id")
         }),
     });
+    if(!response.ok) {
+        return;
+    }
 
     console.log(await response.json());
     revalidateTag("create-order"); 
+    redirect("/hub/encomendas");
 }
