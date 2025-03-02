@@ -5,6 +5,7 @@ import Button from "../generics/Button";
 import Input from "../register/Input";
 import Title from "../generics/Title";
 import { Close } from "@mui/icons-material";
+import { useRouter } from "next/navigation";
 
 interface ClientProps {
     name: string,
@@ -12,12 +13,14 @@ interface ClientProps {
 }
 
 export default function SearchBox() {
+    const router = useRouter();
     const [values, setValues] = useState<ClientProps>({name: "", phone: ""});
     const [errors, setErrors] = useState({name: "", phone: "", message: ""});
     const [open, setOpen] = useState(false);
 
     function openModal() {
         setValues({name: "", phone: ""});
+        setErrors({name: "", phone: "", message: ""});
         setOpen(!open);
     }
 
@@ -42,7 +45,7 @@ export default function SearchBox() {
             return data;
         }  
         setOpen(false);
-        return data;
+        router.push("/hub/clientes");
      }
     function handleChange(e: ChangeEvent<HTMLInputElement>){
         const {name, value} = e.target;
@@ -57,12 +60,12 @@ export default function SearchBox() {
     return (
        <div>
          <div className="w-full flex justify-between items-center px-4">
-            <input type="text" name="search" id="search" className="border border-solid rounded-md p-2"/>
+            <input type="text" name="search" id="search" className="border border-solid rounded-md p-2 w-[140px] md:w-[190px]"/>
             <button onClick={openModal} className="border border-solid p-2 rounded-md bg-primary-500 text-white hover:bg-primary-300">Cadastrar Cliente</button>
         </div>
         {open && (
             <div className="fixed bottom-0 left-0 right-0 top-0 z-40 flex items-center justify-center bg-black/10 backdrop-blur-sm">
-            <div className="w-[450px] h-[450px] bg-white p-8 rounded-md border border-solid border-black/50">
+            <div className="w-[450px] h-[450px] bg-white p-8 rounded-md border border-solid max-h-screen overflow-scroll border-black/50">
                <div>
                 <div className="flex justify-between items-center">
                 <Title>Cadastre o usuário</Title>
@@ -77,7 +80,7 @@ export default function SearchBox() {
                     {errors.phone != undefined && <p className="text-sm text-red-500">{errors.phone}</p>}
                     <div className="grid grid-cols-2 gap-8 my-4">
                         <Button type="submit">Cadastrar</Button>
-                        <Button variant="warning" type="button" onClick={() => {setValues({name: "", phone: ""}); setOpen(false)}}>Cancelar</Button>
+                        <Button variant="warning" type="button" onClick={openModal}>Cancelar</Button>
                     </div>
                     {errors.message != undefined && <p className="text-sm text-red-500">{errors.message}</p>}
                 </form>

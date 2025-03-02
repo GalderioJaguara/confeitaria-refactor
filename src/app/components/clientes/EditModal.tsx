@@ -4,7 +4,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Title from "../generics/Title";
 import Input from "../register/Input";
 import Button from "../generics/Button";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface ClientProps {
     id: string,
@@ -13,6 +13,7 @@ interface ClientProps {
 }
 
 export default function EditModal({client}: {client: ClientProps}) {
+    const router = useRouter();
     const [open, setOpen] = useState(false);
     const [errors, setErrors] = useState({name: "", phone: "", message: ""});
     const [values, setValues] = useState({name: client.name, phone: client.phone
@@ -52,7 +53,7 @@ export default function EditModal({client}: {client: ClientProps}) {
             return data;
         }
         setOpen(false);
-        redirect("/hub/clientes");
+        router.push("/hub/clientes");
     }
 
     
@@ -62,7 +63,7 @@ export default function EditModal({client}: {client: ClientProps}) {
             <button onClick={openModal}><Edit /></button>
              {open && (
                         <div className="fixed bottom-0 left-0 right-0 top-0 z-40 flex items-center justify-center bg-black/10 backdrop-blur-sm">
-                        <div className="w-[450px] h-[450px] bg-white p-8 rounded-md border border-solid border-black/50">
+                        <div className="w-[450px] h-[450px] max-h-screen overflow-scroll bg-white p-8 rounded-md border border-solid border-black/50">
                            <div>
                             <div className="flex justify-between items-center">
                             <Title>Editar dados do usuário</Title>

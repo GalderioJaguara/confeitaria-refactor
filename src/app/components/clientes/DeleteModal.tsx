@@ -3,9 +3,10 @@
 import { Close, Delete } from "@mui/icons-material";
 import { FormEvent, useState } from "react";
 import Button from "../generics/Button";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function DeleteModal({id}: {id:string}) {
+    const router = useRouter();
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [value, setValue] = useState(id);
     function deleteModal() {
@@ -23,7 +24,7 @@ export default function DeleteModal({id}: {id:string}) {
             return data;
         }
         setOpenDeleteModal(false);
-        redirect("/hub/clientes");
+        router.push("/hub/clientes");
     }
 
     return(

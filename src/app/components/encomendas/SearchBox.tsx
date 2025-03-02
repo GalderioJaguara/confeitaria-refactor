@@ -57,18 +57,24 @@ interface Orders {
            }
            router.push("/hub/encomendas");
        }
+      function handleClick () {
+        setOpen(!open);
+        setValues({order_details: "", price: "", status: "Nao Entregue", created_at: "", delivery_time: "", client_id: ""});
+        setErrors({order_details: "", price: "", status: "", created_at: "", delivery_time: "", client_id: "", message: ""});
+      }
+
     return (
         <div>
          <div className="w-full flex justify-between items-center px-4">
             <input type="text" name="search" id="search" className="border border-solid rounded-md p-2 w-[140px] md:w-[190px]"/>
-            <button onClick={() => setOpen(!open)} className="border border-solid p-2 rounded-md bg-primary-500 text-white hover:bg-primary-300">Cadastrar Cliente</button>
+            <button onClick={handleClick} className="border border-solid p-2 rounded-md bg-primary-500 text-white hover:bg-primary-300">Criar Encomenda</button>
         </div>
                      {open && (
                                 <div className="fixed bottom-0 left-0 right-0 top-0 z-40 flex items-center justify-center bg-black/10 backdrop-blur-sm">
-                                <div className="max-w-[600px] w-full bg-white p-8 rounded-md border border-solid border-black/50">
+                                <div className="max-w-[600px] w-full bg-white p-8 rounded-md border border-solid max-h-screen overflow-scroll border-black/50">
                                    <div className="max-w-xl p-4">
                                        <div className="flex justify-between items-center">
-                                       <Title>Cadastrar Encomenda</Title>
+                                       <Title>Criar Encomenda</Title>
                                         <button onClick={() => setOpen(!open)}><Close /></button>
                                        </div>
                                        <form onSubmit={handleSubmit}>
@@ -105,7 +111,7 @@ interface Orders {
                                    
                                            <div className="grid grid-cols-2 gap-8 my-4">
                                                <Button type="submit">Cadastrar</Button>
-                                               <Button onClick={() => setOpen(!open)} variant="warning" type="button">Cancelar</Button>
+                                               <Button onClick={handleClick} variant="warning" type="button">Cancelar</Button>
                                            </div>
                                            {errors.message != undefined && <p className="text-xs text-red-500">{errors.message}</p>}
                                        </form>
