@@ -1,6 +1,4 @@
 import { Delete, Edit } from "@mui/icons-material";
-import DeleteModal from "./DeleteModal";
-import EditModal from "./EditModal";
 
 export default function TableClients({data}: {data?: any[]}) {
     
