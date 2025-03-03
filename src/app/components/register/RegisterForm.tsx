@@ -50,7 +50,7 @@ export default function RegisterForm() {
     return (
        <div className="">
              <form action="/api/register" method="POST" className="flex flex-col gap-4" autoComplete="random-string" onSubmit={handleSubmit}>
-            <Input 
+            {/* <Input 
                 label="Seu nome de usuário" 
                 name="username" 
                 id="username" 
@@ -103,7 +103,7 @@ export default function RegisterForm() {
             {error.password_confirm != undefined && <p className="text-sm text-red-500">{error.password_confirm}</p>}
             
             <Button type="submit" className="w-full">Cadastrar</Button>
-            {error.message != undefined && <p className="text-sm text-red-500 ">{error.message}</p>}
+            {error.message != undefined && <p className="text-sm text-red-500 ">{error.message}</p>} */}
         </form>
        </div>
     );

@@ -1,3 +1,4 @@
+import { Delete, Edit } from "@mui/icons-material";
 import DeleteModal from "./DeleteModal";
 import EditModal from "./EditModal";
 
@@ -20,8 +21,8 @@ export default function TableClients({data}: {data?: any[]}) {
                             <td className="p-4 align-middle text-gray-400">{client.phone}</td>
                             <td className="p-4 align-middle text-gray-400">
                                 <div className="flex gap-4 items-center">
-                                    <EditModal client={client} />
-                                    <DeleteModal id={client.id} />
+                                   <Edit />
+                                   <Delete />
                                 </div>
                             </td>
                         </tr>

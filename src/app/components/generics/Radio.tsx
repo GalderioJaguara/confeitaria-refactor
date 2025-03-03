@@ -1,20 +1,19 @@
-import { ChangeEventHandler, ReactNode } from "react";
-
-interface RadioProps {
+interface Radio {
     name: string;
-    id?: string;
-    value: string;
+    id?: string,
+    value?: string;
+    onChange?: () => void;
     label?: string;
-    onChange?: ChangeEventHandler,
-    checked?: boolean;
 }
 
-export default function Radio(props: RadioProps) {
-    const { name, id, value, label, onChange, checked} = props;
+export default function Radio(props: Radio) {
+    const {name, id, label, value, onChange} = props;
     return (
-        <div className="flex items-center gap-4 my-4">
-            <label htmlFor={id}>{label}</label>
-            <input checked={checked} onChange={onChange} type="radio" name={name} id={id} value={value} className="accent-primary-500"/> 
-        </div> 
+        <div className="flex items-center mb-4">
+            <input onChange={onChange} id={id} type="radio" name={name} value={value} className="w-4 h-4 border-primary-300 focus:ring-2 border focus:ring-secondary-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-60" />
+            <label htmlFor={id} className="block ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                {label}
+            </label>
+        </div>
     );
 }
