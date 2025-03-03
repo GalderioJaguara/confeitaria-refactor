@@ -34,6 +34,7 @@ export default async function FormOrderCreate() {
             <DatePicker
                 id="delivery_time"
                 name="delivery_time"
+                min={new Date().toISOString().slice(0, 16)}
                 label="Data da entregaa"
                 placeholder="Selecione uma data"
             />
