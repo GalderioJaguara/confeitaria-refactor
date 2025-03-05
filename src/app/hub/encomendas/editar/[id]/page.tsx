@@ -34,6 +34,11 @@ export default async function Page({params}: {params: Promise<{id: string}>}) {
                 'Content-Type': 'application/json'
             }
         });
+        if(!response.ok) {
+            return await response.json();
+        }
+        revalidateTag("update-order");
+        redirect("/hub/encomendas");
     }
 
     return (
