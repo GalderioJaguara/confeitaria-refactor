@@ -16,10 +16,39 @@ export default async function createOrder(formData: FormData) {
         }),
     });
     if(!response.ok) {
-        return;
+        return await response.json();
     }
 
     console.log(await response.json());
     revalidateTag("create-order"); 
     redirect("/hub/encomendas");
 }
+
+export async function registerClient(data: FormData) {
+    const response = await fetch("https://confeitaria-refactor.vercel.app/api/clients", {
+        method: 'POST',
+        body: JSON.stringify({
+            name: data.get("name"),
+            phone: data.get("phone")
+        }),  
+    });
+    if (!response.ok) {
+        return await response.json();
+    }
+    revalidateTag("create-client");
+    redirect("/hub/clientes");
+    
+}
+
+export async function deleteClient(id: string) {
+    const response = await fetch(`https://confeitaria-refactor.vercel.app/api/clients/${id}`,{
+        method: "DELETE",
+    });
+    if (!response.ok) {
+        return await response.json();
+    }
+    revalidateTag("delete-client");
+    return await response.json();
+    
+}
+

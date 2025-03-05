@@ -6,6 +6,7 @@ import Input from "../register/Input";
 import Title from "../generics/Title";
 import { Close } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface ClientProps {
     name: string,
@@ -61,7 +62,7 @@ export default function SearchBox() {
        <div>
          <div className="w-full flex justify-between items-center px-4">
             <input type="text" name="search" id="search" className="border border-solid rounded-md p-2 w-[140px] md:w-[190px]"/>
-            <button onClick={openModal} className="border border-solid p-2 rounded-md bg-primary-500 text-white hover:bg-primary-300">Cadastrar Cliente</button>
+            <Link href={`/hub/clientes/cadastrar`}><button className="border border-solid p-2 rounded-md bg-primary-500 text-white hover:bg-primary-300">Cadastrar Cliente</button></Link>
         </div>
         {/* {open && (
             <div className="fixed bottom-0 left-0 right-0 top-0 z-40 flex items-center justify-center bg-black/10 backdrop-blur-sm">

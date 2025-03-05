@@ -1,4 +1,6 @@
 import { Delete, Edit } from "@mui/icons-material";
+import Link from "next/link";
+import DeleteModal from "./DeleteModa";
 
 export default function TableClients({data}: {data?: any[]}) {
     
@@ -19,8 +21,8 @@ export default function TableClients({data}: {data?: any[]}) {
                             <td className="p-4 align-middle text-gray-400">{client.phone}</td>
                             <td className="p-4 align-middle text-gray-400">
                                 <div className="flex gap-4 items-center">
-                                   <Edit />
-                                   <Delete />
+                                    <Link href={`/hub/clientes/editar/${client.id}`}><Edit /></Link>
+                                    <DeleteModal id={client.id} />
                                 </div>
                             </td>
                         </tr>

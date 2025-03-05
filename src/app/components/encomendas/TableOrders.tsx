@@ -1,4 +1,5 @@
 import { Delete, Edit } from "@mui/icons-material";
+import Link from "next/link";
 
 export default function TableOrders({orders}: {orders?: any[]}) {
     return(
@@ -27,7 +28,7 @@ export default function TableOrders({orders}: {orders?: any[]}) {
                                         <td className="p-4 align-middle text-gray-400">{new Date(order.delivery_time).toLocaleString('en-GB')}</td>
                                         <td className="p-4 align-middle text-gray-400">
                                             <div className="flex gap-4 items-center">
-                                                <Edit />
+                                                <Link href={`/hub/encomendas/editar/${order.id}`}><Edit /></Link>
                                                 <Delete />
                                             </div>
                                         </td>
