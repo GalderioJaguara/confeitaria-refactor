@@ -11,15 +11,16 @@ import { redirect } from "next/navigation";
 
 
 
-export default async function Page({params}: {params: {id: string}}) {
-    const response = await fetch(`https://confeitaria-refactor.vercel.app/api/orders/${params.id}`);
+export default async function Page({params}: {params: Promise<{id: string}>}) {
+    const { id } = await params;
+    const response = await fetch(`https://confeitaria-refactor.vercel.app/api/orders/${id}`);
     const order = await response.json();
     const respClient = await fetch(`https://confeitaria-refactor.vercel.app/api/clients/${order[0].client_id}`);
     const client = await respClient.json()
 
     async function updateOrder(formData: FormData) {
         'use server'
-        const response = await fetch(`hthttps://confeitaria-refactor.vercel.app/api/orders/${params.id}`, {
+        const response = await fetch(`https://confeitaria-refactor.vercel.app/api/orders/${id}`, {
             method: "PATCH",
             body: JSON.stringify({
                 order_details: formData.get('order_details'),

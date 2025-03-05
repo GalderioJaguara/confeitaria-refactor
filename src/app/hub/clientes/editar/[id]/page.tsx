@@ -3,15 +3,15 @@ import Input from "@/app/components/generics/Input";
 import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 
-export default async function Page({params}: {params: {id: string}}) {
-    
+export default async function Page({params}: {params: Promise<{id: string}>}) {
+    const { id } = await params;
 
-    const res = await fetch(`https://confeitaria-refactor.vercel.app/api/clients/${params.id}`);
+    const res = await fetch(`https://confeitaria-refactor.vercel.app/api/clients/${id}`);
     const client = await res.json();
 
     async function editClient(data: FormData) {
         'use server'
-        const response = await fetch(`https://confeitaria-refactor.vercel.app/api/clients/${params.id}`, {
+        const response = await fetch(`https://confeitaria-refactor.vercel.app/api/clients/${id}`, {
             method: "PUT",
             body: JSON.stringify({
                 name: data.get("name"),
