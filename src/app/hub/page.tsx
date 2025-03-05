@@ -22,7 +22,7 @@ export default async function Page() {
         {title: 'Total Clientes', icon: <Face2 />, percentage: '(10%)', content: clients.count},
         {title: 'Encomendas do mes', icon: <CalendarToday />, percentage: '(-30%)', content: monthOrders.count},
         {title: 'Total de encomendas', icon: <ShoppingBasket />, percentage: '(+5%)', content: ordersTotal.count},
-        {title: 'Total faturamento mensal', icon: <AttachMoney />, percentage: "(0%)", content: revenue.sum}
+        {title: 'Total faturamento mensal', icon: <AttachMoney />, percentage: "(0%)", content: `R$ ${(revenue.sum / 100)}`}
     ];
 
     
@@ -35,7 +35,6 @@ export default async function Page() {
                 <CardSmall key={index}>
                     <CardSmTitle icon={items.icon}>{items.title}</CardSmTitle>  
                     <CardContent className="py-4 text-gray-400">{items.content}</CardContent>
-                    <CardContent className="text-gray-400">{items.percentage}</CardContent>
                 </CardSmall>
             ))}
             </CardSmContainer>

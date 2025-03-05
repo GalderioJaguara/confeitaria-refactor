@@ -28,7 +28,7 @@ export default function CardRevenue({children, data}: {children?: ReactNode, dat
                     }]}
                     series={[
                         {
-                            data: dataThisYear.map(item => Number(item.revenue)),
+                            data: dataThisYear.map(item => Number(item.revenue) / 100),
                             color: "#6002ee",
                             label: "Faturamento"
                         }
