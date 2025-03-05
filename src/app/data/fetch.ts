@@ -60,9 +60,18 @@ export async function getRevenueLastMonths() {
 }
 export async function getClientIds(){
     try {
-       const names = sql`SELECT name ,id from clients`;
+       const names = await sql`SELECT name ,id from clients`;
         return names;
     } catch(error) {
         throw new Error("Failed to fetch clients");
     }
 }
+
+export async function getLastOrders(){
+    try {
+        const orders = await sql`SELECT order_details, created_at FROM orders ORDER BY created_at DESC LIMIT 5`;
+         return orders;
+     } catch(error) {
+         throw new Error("Failed to fetch orders");
+     }
+ }

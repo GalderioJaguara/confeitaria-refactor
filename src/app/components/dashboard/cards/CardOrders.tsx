@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import CardContainer from "./CardContainer";
 import CardTitle from "./CardTitle";
+import { getLastOrders } from "@/app/data/fetch";
 
 interface CardMediumProps {
     children?: ReactNode
@@ -15,7 +16,9 @@ const OrderItems = [
         {name: "Nome Sobrenome", date: "14/4/2025 15:30"},
     ];
 
-export default function CardOrders ({children, data}: CardMediumProps) {
+export default async function CardOrders ({children, data}: CardMediumProps) {
+    const orders = await getLastOrders();
+
     return (
         <div className="p-4 space-y-4 border border-gray-200 h-[400px] w-full rounded-lg shadow-sm">
             <CardTitle className="text-xl font-semibold text-gray-900">Últimas Encomendas</CardTitle>
@@ -33,13 +36,14 @@ export default function CardOrders ({children, data}: CardMediumProps) {
                             </tr>
                         </thead>
                         <tbody>
-                            {OrderItems.map((item, index) => (
+                            {orders.map((item, index) => (
                                 <tr 
                                     key={index}
                                     className="border-b transition-colors hover:bg-gray-50/50"
                                 >
-                                    <td className="p-4 align-middle text-gray-400">{item.name}</td>
-                                    <td className="p-4 align-middle text-gray-400">{item.date}</td>
+                                    
+                                    <td className="p-4 align-middle text-gray-400">{item.order_details}</td>
+                                    <td className="p-4 align-middle text-gray-400">{new Date(item.created_at).toLocaleString("en-GB")}</td>
                                 </tr>
                             ))}
                         </tbody>
