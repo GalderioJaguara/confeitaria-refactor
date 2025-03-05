@@ -52,3 +52,15 @@ export async function deleteClient(id: string) {
     
 }
 
+export async function deleteOrder(id: string) {
+    'use server'
+    const response = await fetch(`https://confeitaria-refactor.vercel.app/api/orders/${id}`, {
+        method: "DELETE"
+    });
+    if (!response.ok) {
+        return await response.json();
+    }
+    revalidateTag("delete-order");
+    return await response.json();
+}
+

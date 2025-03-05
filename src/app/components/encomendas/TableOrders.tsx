@@ -1,7 +1,10 @@
 import { Delete, Edit } from "@mui/icons-material";
+import { revalidateTag } from "next/cache";
 import Link from "next/link";
+import DeleteOrderModal from "./DeleteOrderModal";
 
 export default function TableOrders({orders}: {orders?: any[]}) {
+
     return(
         <div className="mt-4 overflow-x-auto">
                   <div className="relative min-w-[1024] w-full overflow-scroll">
@@ -29,7 +32,7 @@ export default function TableOrders({orders}: {orders?: any[]}) {
                                         <td className="p-4 align-middle text-gray-400">
                                             <div className="flex gap-4 items-center">
                                                 <Link href={`/hub/encomendas/editar/${order.id}`}><Edit /></Link>
-                                                <Delete />
+                                                <DeleteOrderModal id={order.id} />
                                             </div>
                                         </td>
                                     </tr>
